@@ -1,0 +1,8 @@
+<multi-test>
+    <load-document index="doc" url="fasta/utf8.fa" io="local_file" format="fasta"/>
+
+    <check-num-objects doc="doc" value="2"/>
+    <check-document-object-names doc="doc" value="Первый,Второй"/>
+    <check-document-object-types doc="doc" value="OT_SEQUENCE,OT_SEQUENCE"/>
+
+</multi-test>

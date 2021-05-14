@@ -24,7 +24,6 @@
 #include <QDialogButtonBox>
 #include <QDomDocument>
 #include <QFormLayout>
-#include <QHBoxLayout>
 #include <QLineEdit>
 #include <QMap>
 #include <QMenu>
@@ -929,7 +928,7 @@ void TestViewController::sl_setEnvAction() {
     //todo: create custom utility class for properties like this
     QObjectScopedPointer<QDialog> d = new QDialog(this);
     d->setMinimumWidth(400);
-    d->setWindowTitle(tr("env_mb_title"));
+    d->setWindowTitle("Test Runner");
     QVBoxLayout *vl = new QVBoxLayout();
     d->setLayout(vl);
 
