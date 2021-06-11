@@ -16,14 +16,39 @@ if [[ -z "$3" ]]; then
     exit -2
 fi
 
-productbuild \
-    --component "$1" \
-    /Applications/ \
-    "$2"
+#productbuild \
+#    --component "$1" \
+#    /Applications/ \
+#    "$2"
+
+pkgbuild \
+    --analyze \
+    --root "$1" \
+    "Unipro UGENE-component.plist"
+
+plutil \
+    -replace BundleIsRelocatable \
+    -bool NO \
+    "Unipro UGENE-component.plist"
+
+pkgbuild \
+    --root "$1" \
+    --identifier net.ugene.ugene \
+    --version 39.0 \
+    --install-location Applications/UGENE.app \
+    --component-plist "Unipro UGENE-component.plist" \
+    "Package.pkg"
+
+productbuild --synthesize --package "Package.pkg" Distribution.xml
+
+cat Distribution.xml \
+    | perl -n -e 'if (/.*\<installer-gui-script.*/) {print $_; print "    <domains enable_anywhere=\"false\" enable_currentUserHome=\"true\" enable_localSystem=\"false\"/>\n";}else {print $_;}' \
+> Distribution2.xml
+
+productbuild --distribution ./Distribution2.xml --package-path "Package.pkg" "$2"
 
 productsign \
     --sign "Developer ID Installer: Alteametasoft" \
     --keychain ~/Library/Keychains/login.keychain \
     "$2" \
     "$3"
-
