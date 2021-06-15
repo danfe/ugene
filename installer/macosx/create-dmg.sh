@@ -30,8 +30,3 @@ else
     echo ./pkg-dmg --source "$DMG_DIR" --target "$DMG_FILE" --license ./LICENSE.with_3rd_party --volname "Unipro UGENE $UGENE_VERSION" --symlink /Applications
     ./pkg-dmg --source "$DMG_DIR" --target "$DMG_FILE" --license ./LICENSE.with_3rd_party --volname "Unipro UGENE $UGENE_VERSION" --symlink /Applications
 fi
-
-echo
-echo Signing dmg-file...
-echo ./codesign.mac.sh "$DMG_FILE"
-bash ./codesign.mac.sh "$DMG_FILE"
