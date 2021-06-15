@@ -23,11 +23,14 @@ fi
 
 xcrun altool \
     $op \
+    --show-progress \
+    --verbose \
     -f "$2" \
     -t osx \
     --primary-bundle-id net.ugene.ugene \
     --username "appleid@alteametasoft.com" \
     --password "dhtf-revf-yfqo-bsqg" 2>&1 | tee RequestUUID.txt
+
 if [[ $? == 0 ]]; then
     cat RequestUUID.txt | perl -n -e '$_=~s/\n//; if (/RequestUUID\s*=\s*(.+)/) {print $1;}' > RequestUUID
     xcrun altool \
