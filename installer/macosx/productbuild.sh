@@ -16,7 +16,7 @@ if [[ -z "$3" ]]; then
     exit -2
 fi
 
-if [ -n "$UGENE_BUILD_RELEASE_INSTALL_GLOBAL_PATH" ]; then
+if [ -z "$UGENE_BUILD_RELEASE_INSTALL_GLOBAL_PATH" ]; then
     productbuild \
         --component "$1" \
         /Applications/ \
