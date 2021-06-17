@@ -57,8 +57,8 @@ find "$contents_dir"/PlugIns -type f \
     "{}" \; \
 || exit -1
 
-echo "============= Sign all files in $contents_dir/Resources dir ============="
-find "$contents_dir"/Resources -type f \
+echo "============= Sign all files in $contents_dir/Resources dir, except java8 ============="
+find "$contents_dir"/Resources -not \( -path "$contents_dir"/Resources/tools/java8 -prune \) -type f \
 -exec codesign \
     --sign "Developer ID Application: Alteametasoft" \
     --timestamp \
