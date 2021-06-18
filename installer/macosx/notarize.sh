@@ -32,7 +32,9 @@ xcrun altool \
     --password "dhtf-revf-yfqo-bsqg" 2>&1 | tee RequestUUID.txt
 
 if [[ $? == 0 ]]; then
-    cat RequestUUID.txt | perl -n -e '$_=~s/\n//; if (/RequestUUID\s*=\s*(.+)/) {print $1;}' > RequestUUID
+    cat RequestUUID.txt \
+        | perl -n -e '$_=~s/\n//; if (/RequestUUID\s*=\s*(.+)/) {if($uuid != $1) {$uuid=$1;print $uuid;}}' \
+    > RequestUUID
     xcrun altool \
         --notarization-info `cat RequestUUID` \
         --username "appleid@alteametasoft.com" \
