@@ -70,6 +70,19 @@ find "$contents_dir"/Resources -not \( -path "$contents_dir"/Resources/tools/jav
     "{}" \; \
 || exit -1
 
+echo "============= Sign all files in $contents_dir/Resources/tools/java8 dir ============="
+find "$contents_dir"/Resources/tools/java8 -type f \
+-exec codesign \
+    --sign "Developer ID Application: Alteametasoft" \
+    --timestamp \
+    --force \
+    --verbose=11 \
+    --options runtime \
+    --strict \
+    ${entitlements} \
+    "{}" \; \
+|| exit -1
+
 echo "============= Sign all files in $contents_dir/MacOS dir ============="
 find "$contents_dir"/MacOS -name '*.dylib' \
 -exec codesign \
