@@ -33,9 +33,9 @@ fi
 # ditto -c -k --keepParent "$1" ~/bundle-ditto-0.zip
 
 if [ -z "$CODE_SIGN_OPTIONS" ]; then
-    CODE_SIGN_OPTIONS=" "
+    CODE_SIGN_FLAG=""
 else
-    CODE_SIGN_OPTIONS="--options $CODE_SIGN_OPTIONS"
+    CODE_SIGN_FLAG=--options
 fi
 
 echo "============= Sign all frameworks ============="
@@ -44,7 +44,7 @@ codesign \
     --timestamp \
     --force \
     --verbose=11 \
-    $CODE_SIGN_OPTIONS \
+    $CODE_SIGN_FLAG $CODE_SIGN_OPTIONS \
     --strict \
     ${entitlements} \
     "$1"/Contents/Frameworks/* \
@@ -57,7 +57,7 @@ find "$contents_dir"/PlugIns -type f \
     --timestamp \
     --force \
     --verbose=11 \
-    $CODE_SIGN_OPTIONS \
+    $CODE_SIGN_FLAG $CODE_SIGN_OPTIONS \
     --strict \
     ${entitlements} \
     "{}" \; \
@@ -70,7 +70,7 @@ find "$contents_dir"/Resources -not \( -path "$contents_dir"/Resources/tools/jav
     --timestamp \
     --force \
     --verbose=11 \
-    $CODE_SIGN_OPTIONS \
+    $CODE_SIGN_FLAG $CODE_SIGN_OPTIONS \
     --strict \
     ${entitlements} \
     "{}" \; \
@@ -83,7 +83,7 @@ find "$contents_dir"/Resources/tools/java8 -type f \
     --timestamp \
     --force \
     --verbose=11 \
-    $CODE_SIGN_OPTIONS \
+    $CODE_SIGN_FLAG $CODE_SIGN_OPTIONS \
     --strict \
     --entitlements entitlements-java.plist \
     "{}" \; \
@@ -96,7 +96,7 @@ find "$contents_dir"/Resources/tools/python2 -type f \
     --timestamp \
     --force \
     --verbose=11 \
-    $CODE_SIGN_OPTIONS \
+    $CODE_SIGN_FLAG $CODE_SIGN_OPTIONS \
     --strict \
     --entitlements entitlements-python2.plist \
     "{}" \; \
@@ -109,7 +109,7 @@ find "$contents_dir"/MacOS -name '*.dylib' \
     --timestamp \
     --force \
     --verbose=11 \
-    $CODE_SIGN_OPTIONS \
+    $CODE_SIGN_FLAG $CODE_SIGN_OPTIONS \
     --strict \
     ${entitlements} \
     "{}" \; \
@@ -120,7 +120,7 @@ find "$contents_dir"/MacOS -name '*.a' \
     --timestamp \
     --force \
     --verbose=11 \
-    $CODE_SIGN_OPTIONS \
+    $CODE_SIGN_FLAG $CODE_SIGN_OPTIONS \
     --strict \
     ${entitlements} \
     "{}" \; \
@@ -130,7 +130,7 @@ codesign \
     --timestamp \
     --force \
     --verbose=11 \
-    $CODE_SIGN_OPTIONS \
+    $CODE_SIGN_FLAG $CODE_SIGN_OPTIONS \
     --strict \
     ${entitlements} \
     "$contents_dir"/MacOS/plugins_checker \
@@ -140,7 +140,7 @@ codesign \
     --timestamp \
     --force \
     --verbose=11 \
-    $CODE_SIGN_OPTIONS \
+    $CODE_SIGN_FLAG $CODE_SIGN_OPTIONS \
     --strict \
     ${entitlements} \
     "$contents_dir"/MacOS/ugenem \
@@ -150,7 +150,7 @@ codesign \
     --timestamp \
     --force \
     --verbose=11 \
-    $CODE_SIGN_OPTIONS \
+    $CODE_SIGN_FLAG $CODE_SIGN_OPTIONS \
     --strict \
     ${entitlements} \
     "$contents_dir"/MacOS/ugenecl \
@@ -160,7 +160,7 @@ codesign \
     --timestamp \
     --force \
     --verbose=11 \
-    $CODE_SIGN_OPTIONS \
+    $CODE_SIGN_FLAG $CODE_SIGN_OPTIONS \
     --strict \
     ${entitlements} \
     "$contents_dir"/MacOS/ugeneui \
