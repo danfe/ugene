@@ -30,7 +30,7 @@ else
     exit -1
 fi
 
-ditto -c -k --keepParent "$1" ~/bundle-ditto-0.zip
+# ditto -c -k --keepParent "$1" ~/bundle-ditto-0.zip
 
 if [ -z "$CODE_SIGN_OPTIONS" ]; then
     CODE_SIGN_OPTIONS=" "
@@ -166,5 +166,5 @@ codesign \
     "$contents_dir"/MacOS/ugeneui \
 || exit -1
 
-ditto -c -k --keepParent "$1" ~/bundle-ditto-1.zip
+# ditto -c -k --keepParent "$1" ~/bundle-ditto-1.zip
 
