@@ -33,7 +33,7 @@ xcrun altool \
 
 if [[ $? == 0 ]]; then
     cat RequestUUID.txt \
-        | perl -n -e '$_=~s/\n//; if (/RequestUUID\s*=\s*(.+)/) {if($uuid != $1) {$uuid=$1;print $uuid;}}' \
+        | perl -n -e '$_=~s/\n//; if (/RequestUUID\s*=\s*(.+)/) {if("$uuid" ne "$1") {$uuid=$1;print $uuid;}}' \
     > RequestUUID
     xcrun altool \
         --notarization-info `cat RequestUUID` \
