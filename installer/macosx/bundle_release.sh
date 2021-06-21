@@ -201,7 +201,7 @@ if [ ! "$1" ]; then
     echo ./codesign_clear-i386.sh "${TARGET_APP_DIR_RENAMED}"
     bash ./codesign_clear-i386.sh "${TARGET_APP_DIR_RENAMED}"
     echo ./codesign.mac.sh "${TARGET_APP_DIR_RENAMED}"
-    bash ./codesign.mac.sh "${TARGET_APP_DIR_RENAMED}"
+    bash ./codesign.mac.sh "${TARGET_APP_DIR_RENAMED}" 2>&1 | tee codesign.mac.sh.LOG-APP
     echo "##teamcity[blockClosed name='Bundle code signing']"
     
     echo
@@ -248,7 +248,7 @@ if [ ! "$1" ]; then
     echo
     echo Signing dmg-file...
     echo ./codesign.mac.sh ugene-${UGENE_VERSION}-mac-${ARCHITECTURE}-r${BUILD_VCS_NUMBER_new_trunk}.dmg
-    bash ./codesign.mac.sh ugene-${UGENE_VERSION}-mac-${ARCHITECTURE}-r${BUILD_VCS_NUMBER_new_trunk}.dmg
+    bash ./codesign.mac.sh ugene-${UGENE_VERSION}-mac-${ARCHITECTURE}-r${BUILD_VCS_NUMBER_new_trunk}.dmg 2>&1 | tee codesign.mac.sh.LOG-DMG
     
     if [ -n "$NOTARIZE_DMG_FILE" ]; then
         echo Notarize dmg-file
