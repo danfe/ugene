@@ -64,7 +64,7 @@ find "$contents_dir"/PlugIns -type f \
 || exit -1
 
 echo "============= Sign all files in $contents_dir/Resources dir, except java8,python2,wevote ============="
-find "$contents_dir"/Resources -not \( -path "$contents_dir"/Resources/tools/java8 -prune -o -path "$contents_dir"/Resources/tools/python2 -prune -o -path "$contents_dir"/Resources/tools/wevote -prune\) -type f \
+find "$contents_dir"/Resources -not \( -path "$contents_dir"/Resources/tools/java8 -prune -o -path "$contents_dir"/Resources/tools/python2 -prune -o -path "$contents_dir"/Resources/tools/wevote -prune \) -type f \
 -exec codesign \
     --sign "Developer ID Application: Alteametasoft" \
     --timestamp \
